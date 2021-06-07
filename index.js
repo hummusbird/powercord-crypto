@@ -165,7 +165,7 @@ module.exports = class Crypto extends Plugin {
 			case "donate":
 				return{
 					send: false,
-					result: `\`\`\`diff\n+ Donate to pc-crypto!\nETH - 0x2D71e8Bf5181A18D50eB5D62e47c5338c2803d30\nBTC - bc1qlg22k2934ad8jp0rjje3n2n57vayd2uev595al\nDOGE - D6EVKV79oHCwz5xcqr76xscCohh4Wm8EMT\nRVN - RUMBVuCnBdRCdqUKoDu5HfxMYr5DMUEnvv\nETC - 0x599761676506E9a3BC1b9623C57f004a665a73D6\`\`\``
+					result: `\`\`\`diff\n+ Donate to powercord-crypto!\nETH - 0x2D71e8Bf5181A18D50eB5D62e47c5338c2803d30\nBTC - bc1qlg22k2934ad8jp0rjje3n2n57vayd2uev595al\nDOGE - D6EVKV79oHCwz5xcqr76xscCohh4Wm8EMT\nRVN - RUMBVuCnBdRCdqUKoDu5HfxMYr5DMUEnvv\nETC - 0x599761676506E9a3BC1b9623C57f004a665a73D6\`\`\``
 				}	
 			
 			case "help":
@@ -180,7 +180,7 @@ ${prefix}crypto rate [crypto] [fiat(s)] - Prints current cryptocurrency pricing.
 ${prefix}crypto convert [amount] [fiat] [crypto] - Exchanges fiat currencies to crypto. 
 ${prefix}crypto chart [crypto] [days] - Prints an ASCII price history chart. Defaults to 14 days.
 ${prefix}crypto list - Lists available fiats and cryptos, that can be used in ${prefix}rate and ${prefix}convert.
-${prefix}crypto donate - Lists crypto donation addresses for pc-crypto ;)\`\`\``
+${prefix}crypto donate - Lists crypto donation addresses for powercord-crypto ;)\`\`\``
 }
 		}
 

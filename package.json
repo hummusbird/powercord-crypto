@@ -1,5 +1,5 @@
 {
-  "name": "pc-crypto",
+  "name": "powercord-crypto",
   "version": "1.0.0",
   "description": "A powercord version of ethernet-bot",
   "main": "index.js",
