@@ -4,10 +4,11 @@ const asciichart = require('asciichart')
 const path = require('path')
 
 const prefix = powercord.api.commands.prefix;
-const defaultApi = "coingecko";
-const defaultFiat = "usd,gbp,eur"
+const defaultApi = 'coingecko'
+const defaultFiat = 'usd,gbp,eur'
 
 module.exports = class Crypto extends Plugin {
+	
 	async startPlugin() {
 		powercord.api.commands.registerCommand({
 			command: 'crypto',
@@ -24,17 +25,17 @@ module.exports = class Crypto extends Plugin {
 	async handleCommand (args) {
 		switch(args[0]){
 			case "rate":
-				if (typeof args[1] == 'undefined'){
+				if (!args[1]){
 					return{
 						send: false,
 						result: `\`\`\`diff\n- Please enter a cryptocurrency\`\`\``
 				}}
-				if (typeof args[2] == 'undefined'){ fiat = defaultFiat }
+				if (!args[2]){ fiat = defaultFiat }
 				else { fiat = args[2] }
 
 				var crypto = SymbolToID(args[1])
-				var fiatArray = fiat.split(",")
-				var fiat = fiat.replace(",","%2C")
+				var fiatArray = fiat.split(',')
+				var fiat = fiat.replace(',','%2C')
 
 				var APIdata = await contactAPI(crypto, fiat)
 				if (typeof APIdata == typeof []){ //If the API returns an array, success.
@@ -42,7 +43,7 @@ module.exports = class Crypto extends Plugin {
 					var returnString = `- ${crypto.toUpperCase()} RATE`
 
 					for (var i = 0; i < fiatArray.length; i++){
-						if (typeof APIdata[0][crypto][fiatArray[i]] == 'undefined'){returnString += (`\n- "${fiatArray[i]}" is an invalid currency!`)} //Invalid currency
+						if ( !APIdata[0][crypto][fiatArray[i]] ){returnString += (`\n- "${fiatArray[i]}" is an invalid currency!`)} //Invalid currency
 						else {returnString += `\n1 ${crypto} = ${APIdata[0][crypto][fiatArray[i]]} ${fiatArray[i].toUpperCase()}`} //Valid currency
 					}
 
@@ -68,14 +69,14 @@ module.exports = class Crypto extends Plugin {
 
 				var convertString = ""
 
-				if (typeof value == 'undefined'){
+				if (!value){
 					return{
 						send: false,
 						result: `\`\`\`diff\n- Please enter an amount.\`\`\``
 					}
 				}
-				if (typeof fiat == 'undefined'){ fiat = "usd" }
-				if (typeof crypto == 'undefined'){ crypto = "bitcoin" }
+				if (!fiat){ fiat = "usd" }
+				if (!crypto){ crypto = "bitcoin" }
 
 				crypto = SymbolToID(crypto)
 
@@ -115,13 +116,13 @@ module.exports = class Crypto extends Plugin {
 
 			case "chart":
 				var days = 14
-				if (typeof args[1] == 'undefined'){
+				if (!args[1]){
 					return{
 						send: false,
 						result: `\`\`\`diff\n- Please enter a cryptocurrency\`\`\``
 					}
 				}
-				if (typeof args[2] != 'undefined'){ var days = args[2] }
+				if ( args[2] && !isNaN(parseInt(args[2])) ){ var days = args[2] }
 
 				var crypto = SymbolToID(args[1])
 
@@ -147,12 +148,12 @@ module.exports = class Crypto extends Plugin {
 
 				if (args[1] == "crypto"){
 					var data = fs.readFileSync(path.resolve(__dirname, 'crypto.txt'), 'utf8');   
-					upload(require('powercord/webpack').channels.getChannelId(), makeFile(data, "crypto.txt", false), null);
+					upload(require('powercord/webpack').channels.getChannelId(), makeFile(data, 'crypto.txt', false), null);
 					return false;
 				}
 				else if (args[1] == "fiat"){
 					var data = fs.readFileSync(path.resolve(__dirname, 'fiat.txt'), 'utf8')  
-					upload(require('powercord/webpack').channels.getChannelId(), makeFile(data, "fiat.txt", false), null);
+					upload(require('powercord/webpack').channels.getChannelId(), makeFile(data, 'fiat.txt', false), null);
 					return false;
 				}
 				else{
