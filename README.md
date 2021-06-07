@@ -24,7 +24,7 @@ pc-crypto currently has six commands:
 
 `.crypto chart [crypto] [days]` - Prints an ASCII price history chart. Defaults to 14 days.
 
-`.crypto list` - Lists available fiats and cryptos, that can be used in %rate and %convert.
+`.crypto list` - Lists available fiats and cryptos, that can be used in .rate and .convert.
 
 `.crypto donate` - Lists crypto donation addresses for pc-crypto ;)
 
