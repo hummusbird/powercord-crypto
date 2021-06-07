@@ -1,21 +1,21 @@
 
-# pc-crypto
-pc-crypto is a powercord plugin version of my discord bot, ethernet.
+# powercord-crypto
+powercord-crypto is a powercord plugin version of my discord bot, ethernet.
 It uses the coingecko API to get price data, and the [asciichart](https://github.com/kroitor/asciichart) module to create cool ascii price-history charts
 
-pc-crypto is **NOT** a selfbot. It never uploads embeds, and doesn't respond to other users. It uses powercord's built in command function, and uses code blocks to neatly arrange data.
+powercord-crypto is **NOT** a selfbot. It never uploads embeds, and doesn't respond to other users. It uses powercord's built in command function, and uses code blocks to neatly arrange data.
 
 # Installation
 Open your powercord plugin folder, and run
 
-`git clone https://github.com/hummusbird/pc-crypto`
+`git clone https://github.com/hummusbird/powercord-crypto`
 
 Make sure you run `npm install` to install dependencies.
 
 # Usage
-pc-crypto uses powercord's built in command function. The prefix will be the same as you've set in powercord's settings. I will use . for simplicity here.
+powercrd-crypto uses powercord's built in command function. The prefix will be the same as you've set in powercord's settings. I will use . for simplicity here.
 
-pc-crypto currently has six commands:
+powercord-crypto currently has six commands:
 
 `.crypto help` - This message
 
@@ -27,7 +27,7 @@ pc-crypto currently has six commands:
 
 `.crypto list` - Lists available fiats and cryptos, that can be used in .rate and .convert.
 
-`.crypto donate` - Lists crypto donation addresses for pc-crypto ;)
+`.crypto donate` - Lists crypto donation addresses for powercord-crypto ;)
 
 
 Some commands are explained further below.
