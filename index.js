@@ -179,7 +179,7 @@ ${prefix}crypto help - This message
 ${prefix}crypto rate [crypto] [fiat(s)] - Prints current cryptocurrency pricing. Separate fiats using a comma.
 ${prefix}crypto convert [amount] [fiat] [crypto] - Exchanges fiat currencies to crypto. 
 ${prefix}crypto chart [crypto] [days] - Prints an ASCII price history chart. Defaults to 14 days.
-${prefix}crypto list - Lists available fiats and cryptos, that can be used in %rate and %convert.
+${prefix}crypto list - Lists available fiats and cryptos, that can be used in ${prefix}rate and ${prefix}convert.
 ${prefix}crypto donate - Lists crypto donation addresses for pc-crypto ;)\`\`\``
 }
 		}
