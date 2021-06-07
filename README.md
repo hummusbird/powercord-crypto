@@ -10,7 +10,7 @@ Open your powercord plugin folder, and run
 
 `git clone https://github.com/hummusbird/powercord-crypto`
 
-Make sure you run `npm install` to install dependencies.
+Make sure you run `npm install powercord-crypto` afterwards to install dependencies.
 
 # Usage
 powercrd-crypto uses powercord's built in command function. The prefix will be the same as you've set in powercord's settings. I will use . for simplicity here.
