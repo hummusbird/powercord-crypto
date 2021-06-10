@@ -37,12 +37,12 @@ Some commands are explained further below.
 Prints a neat codeblock with exchanges between crypto and fiat currencies. If none are specified, defaults to USD, GBP and EUR.
 
 `.crypto rate btc`
-![DiscordCanary_q5kp6EV4Cd](https://user-images.githubusercontent.com/38541651/121016139-b07c7b00-c793-11eb-94d7-4843773e2a79.png)
+![CanaryImg](https://user-images.githubusercontent.com/38541651/121543474-d9ee0e80-ca00-11eb-8a62-2d4ae44fa01f.png)
 
 Multiple fiat currencies can be defined, each separated by a comma. Only one cryptocurrency can be defined.
 
 `.crypto rate eth jpy,rub,czk`
-![DiscordCanary_29fsGHzHl5](https://user-images.githubusercontent.com/38541651/121016475-136e1200-c794-11eb-83f8-69a5479589f9.png)
+![CanaryImg](https://user-images.githubusercontent.com/38541651/121543534-e4a8a380-ca00-11eb-9d70-f24d31e606bb.png)
 
 ## .crypto convert 
 
