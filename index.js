@@ -38,9 +38,17 @@ module.exports = class Crypto extends Plugin {
 				var fiat = fiat.replace(',','%2C')
 
 				var APIdata = await contactAPI(crypto, fiat)
-				if (typeof APIdata == typeof []){ //If the API returns an array, success.
 
+				if (typeof APIdata == typeof []){ //If the API returns an array, success.
+					
 					var returnString = `- ${crypto.toUpperCase()} RATE`
+
+					var percent = APIdata[0][crypto][fiatArray[1]+"_24h_change"]
+					var percentSign = ""
+					if (percent > 0) { percentSign = "+ " }
+					else if (percent < 0) { percentSign = "- "; percent *= -1 }
+
+					returnString += `\n${percentSign}${Math.round(percent * 100) / 100}% 24H CHANGE`
 
 					for (var i = 0; i < fiatArray.length; i++){
 						if ( !APIdata[0][crypto][fiatArray[i]] ){returnString += (`\n- "${fiatArray[i]}" is an invalid currency!`)} //Invalid currency
@@ -91,6 +99,7 @@ module.exports = class Crypto extends Plugin {
 						else if (isNaN(APIdata[0][crypto.toLowerCase()][fiat.toLowerCase()])){ //Checks if the returned data is NaN (currency is not valid)
 							throw(`"${fiat}" is not a valid currency!`)
 						}
+
 						convertString += `- CONVERT ${amount} ${fiat.toUpperCase()} TO ${crypto.toUpperCase()}`
 						convertString += `\n\n${amount} ${fiat.toUpperCase()} is worth ${(1/APIdata[0][crypto.toLowerCase()][fiat.toLowerCase()]) * amount} ${crypto}`
 						convertString += `\n\n+ Information from coingecko at ${APIdata[1]}`
@@ -205,7 +214,7 @@ ${prefix}crypto donate - Lists crypto donation addresses for powercord-crypto ;)
 
 		async function contactAPI(crypto, fiat) {
 			try{
-				let res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=${fiat}&include_24hr_change=false&include_last_updated_at=true`)
+				let res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=${fiat}&include_24hr_change=true&include_last_updated_at=true`)
 				let parsed = await res.json()
 				if (parsed && parsed["error"]){ //API error
 					throw(parsed["error"])
@@ -217,7 +226,7 @@ ${prefix}crypto donate - Lists crypto donation addresses for powercord-crypto ;)
 						return [parsed,date]                   
 					}
 					catch{
-						return(`\`\`\`diff\n- "${crypto}" is not a valid crypto!\`\`\``)
+						return(`"${crypto}" is not a valid crypto!`)
 					}
 				}
 			}
