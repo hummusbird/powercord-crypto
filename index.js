@@ -43,7 +43,7 @@ module.exports = class Crypto extends Plugin {
 					
 					var returnString = `- ${crypto.toUpperCase()} RATE`
 
-					var percent = APIdata[0][crypto][fiatArray[1]+"_24h_change"]
+					var percent = APIdata[0][crypto][fiatArray[0]+"_24h_change"]
 					var percentSign = ""
 					if (percent > 0) { percentSign = "+ " }
 					else if (percent < 0) { percentSign = "- "; percent *= -1 }
