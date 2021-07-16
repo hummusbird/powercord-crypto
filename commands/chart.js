@@ -21,11 +21,20 @@ module.exports = {
         var chartContents = await chart(crypto, days)
 
         if (typeof chartContents == typeof []){ //if chartContents is an array, API success and print chart.
-            require('powercord/webpack').getModule([ 'sendMessage' ], false).sendMessage(require('powercord/webpack').channels.getChannelId(), { content: `\`\`\`\n${chartContents[0]}\`\`\`` });
-            return{
-                send: powercord.pluginManager.get("powercord-crypto").settings.get('public', 'false'),
-                result: chartContents[1]
+            if (powercord.pluginManager.get("powercord-crypto").settings.get('public', 'false')) { //if public true
+                require('powercord/webpack').getModule([ 'sendMessage' ], false).sendMessage(require('powercord/webpack').channels.getChannelId(), { content: chartContents[0] });
+                return{
+                    send: true,
+                    result: chartContents[1]
+                }
             }
+            else {
+                return{
+                    send: powercord.pluginManager.get("powercord-crypto").settings.get('public', 'false'),
+                    result: `${chartContents[0]}${chartContents[1]}`
+                }
+            }
+
         }
         else{
             return{
@@ -49,7 +58,7 @@ async function chart(crypto, days){
             var s0 = new Array (100)
             for (var i = 0; i < s0.length; i++)
                 s0[s0.length - 1 - i] = parsed["prices"][Math.floor(apiLength - i * apiLength/100)][1]
-            var chart = (asciichart.plot (s0, { height: 15, padding: '' }))
+            var chart = (`\`\`\`${asciichart.plot (s0, { height: 15, padding: '' })}\`\`\``)
             if (!chart) { throw("Please install asciichart depedency") }
             var percent = (((s0[s0.length - 1] - s0[0] ) / s0[0]) * 100).toFixed(2);
             if (percent < 0){
