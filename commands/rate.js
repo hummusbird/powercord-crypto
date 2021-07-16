@@ -1,7 +1,5 @@
-const powercord = require('powercord/');
-const { Plugin } = require('powercord/entities');
-const { getModule, React } = require('powercord/webpack');
-const Settings = require('../components/Settings');
+const path = require('path')
+const { SymbolToID, diffred, } = require(path.resolve(__dirname, 'functions.js'))
 module.exports = {
     command: 'rate',
     description: 'Prints current rates of a crypto against mutliple fiats.',
@@ -10,15 +8,19 @@ module.exports = {
         if (!args[0]) {
             return{
                 send: false,
-                result: `\`\`\`diff\n- Please enter a cryptocurrency\`\`\``
+                result: diffred('Please enter a cryptocurrency')
             }
         }
-        console.log(this)
-        if (!args[1]) { fiat = powercord.api.settings.getSettings('defaultFiat', 'usd,gbp,eur') }
-        
+        if (!args[1]) { fiat = powercord.pluginManager.get("powercord-crypto").settings.get('defaultFiat', 'usd,gbp,eur') }
+
+        var crypto = SymbolToID(args[0])
+        if (crypto == -1) {return { send: false, result: diffred("Please reinstall the plugin.")}}
+        var fiatArray = fiat.split(',')
+        var fiat = fiat.replace(',', '%2C')
+
         return{
             send: false,
-            result: fiat
+            result: crypto
         }
     }
 };
