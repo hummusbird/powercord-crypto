@@ -1,36 +1,27 @@
 const { Plugin } = require('powercord/entities');
 const { getModule, React } = require('powercord/webpack');
-
+const asciichart = require('asciichart')
+const path = require('path')
 
 const Settings = require('./components/Settings');
+const commands = require('./commands');
 
-module.exports = class Crypto extends Plugin {
+module.exports = class PowercordCrypto extends Plugin {
 
     async startPlugin() {
         this.loadStylesheet('style.scss');
 
-        powercord.api.commands.registerCommand({
-			command: 'crypto',
-			description: 'A powercord version of ethernet-bot',
-			usage: '{c} for more help',
-			executor: this.handleCommand.bind(this)
-		});
+        Object.values(commands).forEach(cmd => powercord.api.commands.registerCommand(cmd));
 		
 		powercord.api.settings.registerSettings(this.entityID, {
 			category: this.entityID,
-			label: 'Glasscord Injector',
-			render: (props) => React.createElement(Settings, {
-                main: this,
-                ...props
-            })
+			label: 'Crypto',
+			render: Settings
 		});
+        console.log(this)
 	}
-
     pluginWillUnload() {
+        Object.values(commands).forEach(cmd => powercord.api.commands.unregisterCommand(cmd.command));
 		powercord.api.settings.unregisterSettings(this.entityID);
 	}
-
-    async handleCommand (args) {
-    }
-
 }
