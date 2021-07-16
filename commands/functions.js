@@ -32,4 +32,27 @@ function diffgreen(string) {
 }
 module.exports.diffgreen = diffgreen;
 
-
+async function contactAPI(crypto, fiat) {
+    try{
+        let res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=${fiat}&include_24hr_change=true&include_last_updated_at=true`)
+        let parsed = await res.json()
+        if (parsed && parsed["error"]){ //API error
+            throw(parsed["error"])
+        }
+        else{ //API success
+            try{
+                var date = new Date((parsed[crypto]["last_updated_at"]) * 1000) //Converts EPOCH time from API to standard date-time format
+                
+                return [parsed,date]                   
+            }
+            catch{
+                return(`"${crypto}" is not a valid cryptocurrency!`)
+            }
+        }
+    }
+    catch (error){
+        console.log(error)
+        return(error)
+    }
+}
+module.exports.contactAPI = contactAPI;
