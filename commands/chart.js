@@ -1,6 +1,6 @@
 const path = require('path')
 const asciichart = require('asciichart')
-const { SymbolToID, diffred, contactAPI } = require(path.resolve(__dirname, 'functions.js'))
+const { SymbolToID, diffred } = require(path.resolve(__dirname, 'functions.js'))
 module.exports = {
     command: 'chart',
     description: 'Prints an ASCII chart of a specified cryptocurrency',
@@ -30,7 +30,7 @@ module.exports = {
             }
             else {
                 return{
-                    send: powercord.pluginManager.get("powercord-crypto").settings.get('public', 'false'),
+                    send: false,
                     result: `${chartContents[0]}${chartContents[1]}`
                 }
             }
@@ -49,8 +49,8 @@ async function chart(crypto, days){
     try{
         let res = await fetch(`https://api.coingecko.com/api/v3/coins/${crypto}/market_chart?vs_currency=usd&days=${days}`)
         let parsed = await res.json()
-        if (parsed && parsed["error"]){ //API error
-            throw(parsed["error"])
+        if (parsed && parsed["error"] || !parsed){ //API error
+            throw("Error contacting API!")
         }
         else{ //API success
             var apiLength = parsed["prices"].length - 1

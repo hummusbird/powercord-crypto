@@ -1,5 +1,5 @@
 const path = require('path')
-const { SymbolToID, diffred, contactAPI } = require(path.resolve(__dirname, 'functions.js'))
+const { SymbolToID, diffred, diff, contactAPI } = require(path.resolve(__dirname, 'functions.js'))
 module.exports = {
     command: 'convert',
     description: 'converts specific fiat amounts into crypto',
@@ -44,23 +44,23 @@ module.exports = {
                 convertString += `\n\n${amount} ${fiat.toUpperCase()} is worth ${(1/APIdata[0][crypto.toLowerCase()][fiat.toLowerCase()]) * amount} ${crypto}`
                 convertString += `\n\n+ Information from coingecko at ${APIdata[1]}`
             }
-            catch (e){
+            catch (error){
                 return{
                     send: false,
-                    result: diffred(`${e}`)
+                    result: diffred(error)
                 }
             }
         }
         else{
             return{
                 send: false,
-                result: `\`\`\`diff\n- ${APIdata}\`\`\``
+                result: diffred(APIdata)
             }
         }
 
         return{
             send: powercord.pluginManager.get("powercord-crypto").settings.get('public', 'false'),
-            result: `\`\`\`diff\n${convertString}\`\`\``
+            result: diff(convertString)
         }
     }
 }
