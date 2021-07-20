@@ -1,3 +1,4 @@
+const path = require('path')
 const { SymbolToID, diffred, contactAPI } = require(path.resolve(__dirname, 'functions.js'))
 module.exports = {
     command: 'convert',
