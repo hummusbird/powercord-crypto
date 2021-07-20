@@ -59,7 +59,7 @@ module.exports = {
         }
 
         return{
-            send: true,
+            send: powercord.pluginManager.get("powercord-crypto").settings.get('public', 'false'),
             result: `\`\`\`diff\n${convertString}\`\`\``
         }
     }
