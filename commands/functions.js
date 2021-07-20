@@ -32,6 +32,11 @@ function diffgreen(string) {
 }
 module.exports.diffgreen = diffgreen;
 
+function diff(string) {
+    return ('```diff\n' + string + '```')
+}
+module.exports.diff = diff;
+
 async function contactAPI(crypto, fiat) {
     try{
         let res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=${fiat}&include_24hr_change=true&include_last_updated_at=true`)
