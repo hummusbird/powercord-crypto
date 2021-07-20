@@ -12,6 +12,7 @@ module.exports = class CryptoSettings extends React.PureComponent {
         this.state = {
             public: this.props.getSetting('public', false),
             fiat: this.props.getSetting('defaultFiat', 'usd,gbp,eur'),
+            crypto: this.props.getSetting('defaultCrypto', 'bitcoin'),
             api: this.props.getSetting('cryptoAPI', 'coingecko'),
         }
     }
@@ -38,6 +39,16 @@ module.exports = class CryptoSettings extends React.PureComponent {
                 }}
                 >
                     Default Fiat currencies
+                </TextInput>
+                <TextInput
+                note = "Default cryptocurrency. Used in convert."
+                defaultValue = {this.state.crypto}
+                onChange = {(value) => {
+                    this.setState({ crypto: value })
+                    this.props.updateSetting('defaultCrypto', value)
+                }}
+                >
+                    Default cryptocurrency
                 </TextInput>
                 <TextInput
                 defaultValue = {this.state.api}
