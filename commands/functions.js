@@ -8,14 +8,14 @@ function SymbolToID(short){
         var data = fs.readFileSync(path.resolve(__dirname, '../data/crypto.json'), 'utf8')
         const json = JSON.parse(data) 
         for (var i = 0; i < json.length; i++){
-            if (short == json[i]["symbol"]){
+            if (short == json[i]["value"]){
                 return json[i]["id"]
             }
         }
         return short
     }
     catch (e){
-        console.log("Error reading file. Please reinstall the plugin")
+        console.log(e)
         return(-1);
     }
 
