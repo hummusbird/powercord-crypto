@@ -1,21 +1,18 @@
-const path = require('path')
-const { SymbolToID, diffred, contactAPI } = require(path.resolve(__dirname, 'functions.js'))
+const path = require('path');
+const { SymbolToID, diffred, diff, contactAPI } = require(path.resolve(__dirname, 'functions.js'))
 module.exports = {
     command: 'rate',
     description: 'Prints current rates of a crypto against mutliple fiats.',
     usage: '{c} [crypto] [fiat(s)]',
     async executor (args) {
-        if (!args[0]) {
-            return{
-                send: false,
-                result: diffred('Please enter a cryptocurrency')
-            }
+        var crypto = SymbolToID(powercord.pluginManager.get("powercord-crypto").settings.get('defaultCrypto', 'bitcoin'))
+        if (args[0]){
+            crypto = SymbolToID(args[0])
         }
+        if (crypto == -1) {return { send: false, result: diffred("Please reinstall the plugin.")}}
+
         if (!args[1]) { fiat = powercord.pluginManager.get("powercord-crypto").settings.get('defaultFiat', 'usd,gbp,eur') }
         else { fiat = args[1].toLowerCase() }
-
-        var crypto = SymbolToID(args[0])
-        if (crypto == -1) {return { send: false, result: diffred("Please reinstall the plugin.")}}
 
         var fiatArray = fiat.split(',')
         var fiat = fiat.replace(',', '%2C')
@@ -37,12 +34,11 @@ module.exports = {
                 if ( !APIdata[0][crypto][fiatArray[i]] ){ returnString += (`\n- "${fiatArray[i]}" is an invalid currency!`) } //Invalid currency
                 else {returnString += `\n1 ${crypto} = ${APIdata[0][crypto][fiatArray[i]]} ${fiatArray[i].toUpperCase()}`} //Valid currency
             }
-            var api = powercord.pluginManager.get("powercord-crypto").settings.get('cryptoAPI', 'coingecko')
-            returnString += `\n+ Information from ${api} at ${APIdata[1]}` //Add time
+            returnString += `\n+ Information from coingecko at ${APIdata[1]}` //Add time
 
             return{
                 send: powercord.pluginManager.get("powercord-crypto").settings.get('public', 'false'), //Only send if public messaged enabled
-                result: `\`\`\`diff\n${returnString}\`\`\``
+                result: diff(returnString)
             }
 
         }
