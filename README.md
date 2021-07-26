@@ -23,7 +23,7 @@ powercord-crypto currently has six commands:
 
 `.convert [amount] [fiat] [crypto]` - Exchanges fiat currencies to crypto. 
 
-`.chart [crypto] [days]` - Prints an ASCII price history chart. Defaults to 14 days.
+`.chart [crypto] [days]` - Prints an ASCII price history chart.
 
 `.list` - Lists available fiats and cryptos, that can be used in .rate and .convert.
 
@@ -34,7 +34,7 @@ Some commands are explained further below.
 
 ## .rate
 
-Prints a neat codeblock with exchanges between crypto and fiat currencies. If none are specified, defaults to USD, GBP and EUR.
+Prints a neat codeblock with exchanges between crypto and fiat currencies.
 
 `.rate btc`
 ![CanaryImg](https://user-images.githubusercontent.com/38541651/121543474-d9ee0e80-ca00-11eb-8a62-2d4ae44fa01f.png)
@@ -61,7 +61,7 @@ This workaround also allows you to convert ETH to BTC, and vice-versa. Check fia
 
 ## .chart
 
-Prints a price-history ascii codeblock chart. Define one crypto and how many days for width. Defaults to 14 days, if not specified.
+Prints a price-history ascii codeblock chart. Define one crypto and how many days for width.
 
 `.chart doge`
 ![DiscordCanary_VPsTu4klAS](https://user-images.githubusercontent.com/38541651/121017228-f423b480-c794-11eb-804e-3289a180d24f.png)
@@ -74,6 +74,14 @@ Prints a price-history ascii codeblock chart. Define one crypto and how many day
 Run `.crypto list crypto` for a list of all supported cryptocurrencies.
 
 Run `.crypto list fiat` for a list of all supported fiat currencies.
+
+## Settings
+
+powercord-crypto has an extensive settings panel, where you can define the default values for all commands.
+
+You can also choose whether to print a taller, 32-line chart instead of the default 16 line one. This requires you to either have nitro (with the larger 4,000 character message limit) or to disable sending powercord-crypto messages publically.
+
+![DiscordCanary_kXPBro2AsE](https://user-images.githubusercontent.com/38541651/126973395-b46f9022-3d77-46f8-93ec-0793f129589c.png)
 
 ## DISCLAMER
 
