@@ -7,7 +7,7 @@ module.exports = {
     description: 'A powercord version of ethernet-bot',
     usage: '{c} for more help',
     async executor (args) {
-        if (!args || args[0] == "help"){
+        if (!args[0] || args[1] == "help"){
         return{
             send: false,
             result: `\`\`\`diff

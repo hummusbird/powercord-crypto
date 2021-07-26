@@ -43,6 +43,7 @@ module.exports = AsyncComponent.from((async () => {
                         onChange={() => {
                             this.setState({ public: !this.state.public })
                             this.props.toggleSetting('public')
+                            if (!nitro) {this.props.updateSetting('longChart', false)}
                         }}
                     >
                         Public messages
