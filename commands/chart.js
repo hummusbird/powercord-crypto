@@ -43,6 +43,8 @@ module.exports = {
 
 async function chart(crypto, days){
     try{
+        let chartHeight = powercord.pluginManager.get("powercord-crypto").settings.get('longChart', false) ? 31 : 15
+        console.log(chartHeight)
         let res = await fetch(`https://api.coingecko.com/api/v3/coins/${crypto}/market_chart?vs_currency=usd&days=${days}`)
         let parsed = await res.json()
         if (parsed && parsed["error"]){ //API error
@@ -57,7 +59,7 @@ async function chart(crypto, days){
             var s0 = new Array (100)
             for (var i = 0; i < s0.length; i++)
                 s0[s0.length - 1 - i] = parsed["prices"][Math.floor(apiLength - i * apiLength/100)][1]
-            var chart = ('```' + asciichart.plot (s0, { height: 15, padding: '' }) + '```')
+            var chart = ('```' + asciichart.plot (s0, { height: chartHeight, padding: '' }) + '```')
             if (!chart) { throw("Please install asciichart depedency") }
             var percent = (((s0[s0.length - 1] - s0[0] ) / s0[0]) * 100).toFixed(2);
             if (percent < 0){
