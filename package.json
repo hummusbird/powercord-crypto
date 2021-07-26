@@ -1,6 +1,6 @@
 {
   "name": "powercord-crypto",
-  "version": "1.0.2",
+  "version": "2",
   "description": "A powercord version of ethernet-bot",
   "main": "index.js",
   "scripts": {

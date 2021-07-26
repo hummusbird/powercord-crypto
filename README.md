@@ -25,9 +25,9 @@ powercord-crypto currently has six commands:
 
 `.chart [crypto] [days]` - Prints an ASCII price history chart.
 
-`.list` - Lists available fiats and cryptos, that can be used in .rate and .convert.
+`.crypto list crypto/fiat [page]` - Lists available fiats and cryptos that can be used in .rate and .convert.
 
-`.donate` - Lists crypto donation addresses for powercord-crypto ;)
+`.crypto donate` - Lists crypto donation addresses for powercord-crypto ;)
 
 
 Some commands are explained further below.

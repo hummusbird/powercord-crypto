@@ -1,6 +1,6 @@
 {
   "name": "powercord-crypto",
-  "version": "1.0.2",
+  "version": "2",
   "description": "a powercord version of ethernet-bot",
   "author": "hummusbird",
   "permissions": ["ext_api"],
