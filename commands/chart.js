@@ -44,7 +44,6 @@ module.exports = {
 async function chart(crypto, days){
     try{
         let chartHeight = powercord.pluginManager.get("powercord-crypto").settings.get('longChart', false) ? 31 : 15
-        console.log(chartHeight)
         let res = await fetch(`https://api.coingecko.com/api/v3/coins/${crypto}/market_chart?vs_currency=usd&days=${days}`)
         let parsed = await res.json()
         if (parsed && parsed["error"]){ //API error
