@@ -19,54 +19,54 @@ powercord-crypto currently has six commands:
 
 `.crypto help` - This message
 
-`.crypto rate [crypto] [fiat(s)]` - Prints current cryptocurrency pricing. Separate fiats using a comma.
+`.rate [crypto] [fiat(s)]` - Prints current cryptocurrency pricing. Separate fiats using a comma.
 
-`.crypto convert [amount] [fiat] [crypto]` - Exchanges fiat currencies to crypto. 
+`.convert [amount] [fiat] [crypto]` - Exchanges fiat currencies to crypto. 
 
-`.crypto chart [crypto] [days]` - Prints an ASCII price history chart. Defaults to 14 days.
+`.chart [crypto] [days]` - Prints an ASCII price history chart. Defaults to 14 days.
 
-`.crypto list` - Lists available fiats and cryptos, that can be used in .rate and .convert.
+`.list` - Lists available fiats and cryptos, that can be used in .rate and .convert.
 
-`.crypto donate` - Lists crypto donation addresses for powercord-crypto ;)
+`.donate` - Lists crypto donation addresses for powercord-crypto ;)
 
 
 Some commands are explained further below.
 
-## .crypto rate
+## .rate
 
 Prints a neat codeblock with exchanges between crypto and fiat currencies. If none are specified, defaults to USD, GBP and EUR.
 
-`.crypto rate btc`
+`.rate btc`
 ![CanaryImg](https://user-images.githubusercontent.com/38541651/121543474-d9ee0e80-ca00-11eb-8a62-2d4ae44fa01f.png)
 
 Multiple fiat currencies can be defined, each separated by a comma. Only one cryptocurrency can be defined.
 
-`.crypto rate eth jpy,rub,czk`
+`.rate eth jpy,rub,czk`
 ![CanaryImg](https://user-images.githubusercontent.com/38541651/121543534-e4a8a380-ca00-11eb-9d70-f24d31e606bb.png)
 
-## .crypto convert 
+## .convert 
 
 Converts a specific value of fiat currency into crypto.
 
-`.crypto convert 100 usd btc`
+`.convert 100 usd btc`
 ![DiscordCanary_FJiqyiK4Zq](https://user-images.githubusercontent.com/38541651/121016515-21239780-c794-11eb-9f33-c640a34909ae.png)
 
 You currently cannot convert crypto into fiat.
 However, some cryptos, such as BTC AND ETH, are *also* marked as "fiat". This means you can convert ETH into USDT (A crypto tied to the US Dollar) as a workaround.
 
-`.crypto convert 0.05 eth usdt`
+`.convert 0.05 eth usdt`
 ![DiscordCanary_fGYVdFM8hj](https://user-images.githubusercontent.com/38541651/121016922-a1e29380-c794-11eb-8d22-6673143e1fcd.png)
 
 This workaround also allows you to convert ETH to BTC, and vice-versa. Check fiat.txt for all currencies marked as "fiat"
 
-## .crypto chart
+## .chart
 
 Prints a price-history ascii codeblock chart. Define one crypto and how many days for width. Defaults to 14 days, if not specified.
 
-`.crypto chart doge`
+`.chart doge`
 ![DiscordCanary_VPsTu4klAS](https://user-images.githubusercontent.com/38541651/121017228-f423b480-c794-11eb-804e-3289a180d24f.png)
 
-`.crypto chart litecoin 100`
+`.chart litecoin 100`
 ![image](https://user-images.githubusercontent.com/38541651/121017409-27feda00-c795-11eb-8ba1-09eaca050a6f.png)
 
 ## .crypto list
